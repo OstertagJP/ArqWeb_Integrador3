@@ -56,4 +56,9 @@ public class EstudianteService {
         }
     }
 
+    public Estudiante buscarPorId(int id) {
+        return estudianteRepository.findById(id);
+    }
+
+
 }
