@@ -1,54 +1,32 @@
 package servicio;
 
-import DTO.CarreraDTO;
-import JPA.Carrera;
-import jakarta.persistence.EntityManager;
-import repository.CarreraRepository;
-import repository.EntityManagerFactory;
+
+import com.arqweb.integrador3.entity.Carrera;
+import com.arqweb.integrador3.repository.CarreraRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 
 import java.util.List;
+import java.util.Optional;
 
+@Service
 public class CarreraService {
-    private final CarreraRepository carreraRepository = new CarreraRepository();
 
-    public Carrera guardarCarrera(Carrera carrera) {
-        return carreraRepository.save(carrera);
-    }
+    @Autowired
+    private CarreraRepository carreraRepo;
 
-    public void eliminarCarrera(Carrera carrera) {
-        carreraRepository.delete(carrera);
+    public Carrera crearCarrera(Carrera carrera){
+        return carreraRepo.save(carrera);
     }
 
-    public Carrera buscarCarreraPorId(int id) {
-        return carreraRepository.findById(id);
-    }
-    public Carrera buscarCarreraPorCodigo(int codigo) {
-        return carreraRepository.findByCodigo(codigo);
-    }
-    public List<Carrera> listarCarreras() {
-        return carreraRepository.findAll();
+    public List<Carrera> obtenerTodasCarreras(){
+        return carreraRepo.findAll();
     }
 
-    public List<CarreraDTO> carrerasConEstudiantes() {
-        return carreraRepository.findAllWithEstudiantesCount();
+    public Optional<Carrera> obtenerCarreraPorId(Long id){
+        return carreraRepo.findById(id);
     }
 
-    public Carrera buscarCarreraPorNombre(String nombre) {
-        return carreraRepository.findByNombre(nombre);
-    }
-
-    public void borrarTodasLasCarreras() {
-        EntityManager em = EntityManagerFactory.getEntityManager();
-        try {
-            em.getTransaction().begin();
-            em.createQuery("DELETE FROM Carrera").executeUpdate();
-            em.getTransaction().commit();
-        } catch (Exception e) {
-            if (em.getTransaction().isActive()) em.getTransaction().rollback();
-            e.printStackTrace();
-        } finally {
-            em.close();
-        }
-    }
-
+    public List<Carrera>
 }
