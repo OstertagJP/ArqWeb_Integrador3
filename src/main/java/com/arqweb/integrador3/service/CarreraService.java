@@ -1,4 +1,4 @@
-package servicio;
+package com.arqweb.integrador3.service;
 
 
 import com.arqweb.integrador3.entity.Carrera;

@@ -1,9 +1,12 @@
 package com.arqweb.integrador3.controller;
 
+
 import com.arqweb.integrador3.entity.Estudiante;
 import com.arqweb.integrador3.service.EstudianteService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
@@ -15,33 +18,47 @@ public class EstudianteController {
     @Autowired
     private EstudianteService estudianteService;
 
-    // a) Alta de estudiante
+    /**
+     * a) Endpoint para dar de alta un estudiante
+     */
     @PostMapping
     public Estudiante crearEstudiante(@RequestBody Estudiante estudiante) {
         return estudianteService.altaEstudiante(estudiante);
     }
 
-    // c) Obtener todos los estudiantes, con ordenamiento
+    /**
+     * c) Endpoint para recuperar todos los estudiantes con ordenamiento
+     */
     @GetMapping
     public List<Estudiante> obtenerEstudiantes(@RequestParam(defaultValue = "asc") String orden) {
-        return estudianteService.listarEstudiantes(orden);
+        return estudianteService.obtenerTodosEstudiantes(orden);
     }
 
-    // d) Buscar por número de libreta
+    /**
+     * d) Endpoint para recuperar un estudiante por su número de libreta universitaria
+     */
+
     @GetMapping("/libreta/{numero}")
-    public Estudiante obtenerPorLibreta(@PathVariable String numero) {
-        return estudianteService.buscarPorLibreta(numero);
+    public Estudiante obtenerPorLibreta(@PathVariable Long numero) {
+        return estudianteService.findByLibretaUniversitaria(numero)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Estudiante no encontrado"));
     }
 
-    // e) Buscar por género
+
+    /**
+     * e) Endpoint para recuperar estudiantes por género
+     */
     @GetMapping("/genero/{genero}")
     public List<Estudiante> obtenerPorGenero(@PathVariable String genero) {
         return estudianteService.buscarPorGenero(genero);
     }
 
-    // g) Estudiantes por carrera y ciudad
+    /**
+     * g) Endpoint para recuperar estudiantes por carrera y ciudad
+     */
     @GetMapping("/carrera/{idCarrera}/ciudad/{ciudad}")
     public List<Estudiante> estudiantesPorCarreraYCiudad(@PathVariable int idCarrera, @PathVariable String ciudad) {
         return estudianteService.buscarPorCarreraYCiudad(idCarrera, ciudad);
     }
+
 }

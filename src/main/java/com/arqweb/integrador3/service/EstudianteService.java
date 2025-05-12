@@ -1,11 +1,18 @@
-package servicio;
+package com.arqweb.integrador3.service;
+
+
+
 import java.util.List;
+
+import com.arqweb.integrador3.entity.Carrera;
 import com.arqweb.integrador3.entity.Estudiante;
+import com.arqweb.integrador3.repository.CarreraRepository;
 import com.arqweb.integrador3.repository.EstudianteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-
+import org.springframework.web.server.ResponseStatusException;
 
 
 import java.util.List;
@@ -21,20 +28,30 @@ public class EstudianteService {
         return estudianteRepository.save(estudiante);
     }
 
-    public List<Estudiante> obtenerTodosEstudiantes(Sort sort){
+    public List<Estudiante> obtenerTodosEstudiantes(String orden) {
+        Sort sort = orden.equalsIgnoreCase("desc") ? Sort.by("nombre").descending() : Sort.by("nombre").ascending();
         return estudianteRepository.findAll(sort);
     }
+
 
     public Optional<Estudiante> findByLibretaUniversitaria(Long libretaUniversitaria) {
         return estudianteRepository.findByLibretaUniversitaria(libretaUniversitaria);
 
     }
 
-    public List<Estudiante> obtenerPorGenero(String genero) {
+    public List<Estudiante> buscarPorGenero(String genero) {
         return estudianteRepository.findByGenero(genero);
     }
 
-    public List<Estudiante> obtenerPorCarreraYCiudad(String carrera, String ciudad) {
-        return estudianteRepository.buscarPorCarreraYCiudad(carrera, ciudad);
+    @Autowired
+    private CarreraRepository carreraRepository;
+
+    public List<Estudiante> buscarPorCarreraYCiudad(int idCarrera, String ciudad) {
+        Carrera carrera = carreraRepository.findById((long) idCarrera)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Carrera no encontrada"));
+
+        return estudianteRepository.buscarEstudiantesPorCarreraYCiudad(carrera, ciudad);
     }
+
+
 }

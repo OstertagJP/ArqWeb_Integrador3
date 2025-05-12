@@ -22,4 +22,8 @@ public class Carrera {
 
     @OneToMany(mappedBy = "carrera", cascade = CascadeType.ALL)
     private List<Inscripcion> inscripciones;
+
+    public String getNombre() {
+        return carrera;
+    }
 }
