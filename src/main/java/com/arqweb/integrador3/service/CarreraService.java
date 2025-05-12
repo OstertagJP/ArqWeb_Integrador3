@@ -14,19 +14,25 @@ import java.util.Optional;
 public class CarreraService {
 
     @Autowired
-    private CarreraRepository carreraRepo;
+    private CarreraRepository carreraRepository;
 
     public Carrera crearCarrera(Carrera carrera){
-        return carreraRepo.save(carrera);
+        return carreraRepository.save(carrera);
     }
 
     public List<Carrera> obtenerTodasCarreras(){
-        return carreraRepo.findAll();
+        return carreraRepository.findAll();
     }
 
     public Optional<Carrera> obtenerCarreraPorId(Long id){
-        return carreraRepo.findById(id);
+        return carreraRepository.findById(id);
     }
 
-    public List<Carrera>
+    public List<DTO.CarreraDTO>obtenerCarrerasOrdenadasPorCantidadDeInscriptos(){
+        return carreraRepository.obtenerCarrerasConCantidadDeInscriptos();
+    }
+
+    public List<DTO.ReporteCarreraDTO> generarReporteCarreras(){
+        return carreraRepository.generarReporteCarreras();
+    }
 }
