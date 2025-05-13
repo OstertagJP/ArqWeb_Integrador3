@@ -18,6 +18,7 @@ public class ReporteController {
     // f) Carreras con cantidad de inscriptos, ordenadas
     @GetMapping("/carreras")
     public List<ReporteCarreraDTO> carrerasConInscriptos() {
+
         return reporteService.generarReporteCarreras();
     }
 }

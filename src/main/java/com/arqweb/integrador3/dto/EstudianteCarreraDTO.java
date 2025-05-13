@@ -1,4 +1,4 @@
-package DTO;
+package com.arqweb.integrador3.dto;
 
 import java.io.Serializable;
 

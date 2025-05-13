@@ -5,24 +5,26 @@ import lombok.NoArgsConstructor;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
-
+import com.arqweb.integrador3.dto.ReporteCarreraDTO;
+import com.arqweb.integrador3.dto.CarreraDTO;
 import java.util.List;
 
 @Repository
 public interface CarreraRepository extends JpaRepository<Carrera, Long> {
-    @Query("SELECT new com.arqweb.integrador3.dto.CarreraDTO(c.nombre, COUNT(i)) " +
+    @Query("SELECT new com.arqweb.integrador3.dto.CarreraDTO(" +
+            "c.idCarrera, c.carrera, COUNT(i), c.duracion) " +
             "FROM Inscripcion i JOIN i.carrera c " +
-            "GROUP BY c.nombre " +
+            "GROUP BY c.idCarrera, c.carrera, c.duracion " +
             "ORDER BY COUNT(i) DESC")
-    List<DTO.CarreraDTO> obtenerCarrerasConCantidadDeInscriptos();
+    List<CarreraDTO> obtenerCarrerasConCantidadDeInscriptos();
 
     @Query("SELECT new com.arqweb.integrador3.dto.ReporteCarreraDTO(" +
-            "c.nombre, " +
+            "c.carrera, " +
             "YEAR(i.inscripcion), " +
             "COUNT(i), " +
             "SUM(CASE WHEN i.graduacion IS NOT NULL THEN 1 ELSE 0 END)) " +
             "FROM Inscripcion i JOIN i.carrera c " +
-            "GROUP BY c.nombre, YEAR(i.inscripcion) " +
-            "ORDER BY c.nombre ASC, YEAR(i.inscripcion) ASC")
-    List<DTO.ReporteCarreraDTO> generarReporteCarreras();
+            "GROUP BY c.carrera, YEAR(i.inscripcion) " +
+            "ORDER BY c.carrera ASC, YEAR(i.inscripcion) ASC")
+    List<ReporteCarreraDTO> generarReporteCarreras();
 }

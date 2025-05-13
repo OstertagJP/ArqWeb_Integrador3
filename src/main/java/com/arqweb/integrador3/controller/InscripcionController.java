@@ -25,13 +25,11 @@ public class InscripcionController {
 
     // b) Matricular estudiante en carrera
     @PostMapping
-    public Inscripcion matricular(@RequestParam int idEstudiante,
-                                  @RequestParam int idCarrera,
-                                  @RequestParam int anio) {
+    public Inscripcion matricular(@RequestParam Long idEstudiante,
+                                  @RequestParam Long idCarrera,
+                                  @RequestParam int anio,
+                                  @RequestParam(defaultValue = "false") boolean graduado) {
 
-        Estudiante estudiante = estudianteService.buscarPorId(idEstudiante);
-        Carrera carrera = carreraService.buscarCarreraPorId(idCarrera);
-
-        return inscripcionService.matricularEstudiante(estudiante, carrera, anio);
+        return inscripcionService.matricularEstudiante(idEstudiante, idCarrera, anio, graduado);
     }
 }

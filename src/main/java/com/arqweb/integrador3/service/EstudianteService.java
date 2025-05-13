@@ -53,5 +53,9 @@ public class EstudianteService {
         return estudianteRepository.buscarEstudiantesPorCarreraYCiudad(carrera, ciudad);
     }
 
+    public Estudiante buscarPorId(int id) {
+        return estudianteRepository.findById((long) id)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Estudiante no encontrado"));
+    }
 
 }

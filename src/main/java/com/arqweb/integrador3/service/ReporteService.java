@@ -1,6 +1,7 @@
 package com.arqweb.integrador3.service;
 
 
+import com.arqweb.integrador3.dto.ReporteCarreraDTO;
 import com.arqweb.integrador3.repository.CarreraRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,7 +15,7 @@ public class ReporteService {
     @Autowired
     private CarreraRepository carreraRepository;
 
-    public List<DTO.ReporteCarreraDTO> generarReporteCarreras() {
+    public List<ReporteCarreraDTO> generarReporteCarreras() {
         return carreraRepository.generarReporteCarreras();
     }
 }

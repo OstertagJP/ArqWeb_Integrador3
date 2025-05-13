@@ -1,4 +1,4 @@
-package DTO;
+package com.arqweb.integrador3.dto;
 import java.io.Serializable;
 import java.util.List;
 
@@ -10,11 +10,11 @@ public class EstudianteDTO implements Serializable {
     private String genero;
     private String numeroDocumento;
     private String ciudadResidencia;
-    private List<DTO.EstudianteCarreraDTO> carreras;
+    private List<EstudianteCarreraDTO> carreras;
 
     public EstudianteDTO() { }
 
-    public EstudianteDTO(Long id, String nombre, String apellido, List<DTO.EstudianteCarreraDTO> carreras) {
+    public EstudianteDTO(Long id, String nombre, String apellido, List<EstudianteCarreraDTO> carreras) {
         this.id = id;
         this.nombre = nombre;
         this.apellido = apellido;
@@ -45,11 +45,11 @@ public class EstudianteDTO implements Serializable {
         this.apellido = apellido;
     }
 
-    public List<DTO.EstudianteCarreraDTO> getCarreras() {
+    public List<EstudianteCarreraDTO> getCarreras() {
         return carreras;
     }
 
-    public void setCarreras(List<DTO.EstudianteCarreraDTO> carreras) {
+    public void setCarreras(List<EstudianteCarreraDTO> carreras) {
         this.carreras = carreras;
     }
 

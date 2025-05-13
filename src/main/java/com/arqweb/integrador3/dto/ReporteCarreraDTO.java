@@ -1,4 +1,4 @@
-package DTO;
+package com.arqweb.integrador3.dto;
 
 import java.io.Serializable;
 import java.util.List;
@@ -6,11 +6,11 @@ import java.util.List;
 public class ReporteCarreraDTO implements Serializable {
     private Long id;
     private String nombre;
-    private List<DTO.EstadisticasPorAnioDTO> estadisticasPorAnio;
+    private List<EstadisticasPorAnioDTO> estadisticasPorAnio;
 
     public ReporteCarreraDTO() { }
 
-    public ReporteCarreraDTO(Long id, String nombre, List<DTO.EstadisticasPorAnioDTO> estadisticasPorAnio) {
+    public ReporteCarreraDTO(Long id, String nombre, List<EstadisticasPorAnioDTO> estadisticasPorAnio) {
         this.id = id;
         this.nombre = nombre;
         this.estadisticasPorAnio = estadisticasPorAnio;
@@ -32,11 +32,11 @@ public class ReporteCarreraDTO implements Serializable {
         this.nombre = nombre;
     }
 
-    public List<DTO.EstadisticasPorAnioDTO> getEstadisticasPorAnio() {
+    public List<EstadisticasPorAnioDTO> getEstadisticasPorAnio() {
         return estadisticasPorAnio;
     }
 
-    public void setEstadisticasPorAnio(List<DTO.EstadisticasPorAnioDTO> estadisticasPorAnio) {
+    public void setEstadisticasPorAnio(List<EstadisticasPorAnioDTO> estadisticasPorAnio) {
         this.estadisticasPorAnio = estadisticasPorAnio;
     }
 
