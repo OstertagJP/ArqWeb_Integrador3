@@ -1,6 +1,5 @@
 package com.arqweb.integrador3.service;
 
-
 import com.arqweb.integrador3.dto.CarreraDTO;
 import com.arqweb.integrador3.dto.ReporteCarreraDTO;
 import com.arqweb.integrador3.entity.Carrera;
@@ -10,15 +9,16 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
-
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class CarreraService {
 
     @Autowired
     private CarreraRepository carreraRepository;
+
+    @Autowired
+    private ReporteService reporteService; // ← Se inyecta ReporteService
 
     public Carrera crearCarrera(Carrera carrera){
         return carreraRepository.save(carrera);
@@ -33,11 +33,12 @@ public class CarreraService {
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Carrera no encontrada"));
     }
 
-    public List<CarreraDTO>obtenerCarrerasOrdenadasPorCantidadDeInscriptos(){
+    public List<CarreraDTO> obtenerCarrerasOrdenadasPorCantidadDeInscriptos(){
         return carreraRepository.obtenerCarrerasConCantidadDeInscriptos();
     }
 
     public List<ReporteCarreraDTO> generarReporteCarreras(){
-        return carreraRepository.generarReporteCarreras();
+        return reporteService.generarReporteCarreras(); // ← Usamos el método ya definido en ReporteService
     }
 }
+

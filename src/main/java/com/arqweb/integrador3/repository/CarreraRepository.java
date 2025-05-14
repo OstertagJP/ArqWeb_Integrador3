@@ -1,5 +1,6 @@
 package com.arqweb.integrador3.repository;
 
+import com.arqweb.integrador3.dto.ReporteCarreraParcialDTO;
 import com.arqweb.integrador3.entity.Carrera;
 import lombok.NoArgsConstructor;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -18,13 +19,14 @@ public interface CarreraRepository extends JpaRepository<Carrera, Long> {
             "ORDER BY COUNT(i) DESC")
     List<CarreraDTO> obtenerCarrerasConCantidadDeInscriptos();
 
-    @Query("SELECT new com.arqweb.integrador3.dto.ReporteCarreraDTO(" +
+    @Query("SELECT new com.arqweb.integrador3.dto.ReporteCarreraParcialDTO(" +
             "c.carrera, " +
-            "YEAR(i.inscripcion), " +
+            "FUNCTION('year', i.inscripcion), " +
             "COUNT(i), " +
             "SUM(CASE WHEN i.graduacion IS NOT NULL THEN 1 ELSE 0 END)) " +
             "FROM Inscripcion i JOIN i.carrera c " +
-            "GROUP BY c.carrera, YEAR(i.inscripcion) " +
-            "ORDER BY c.carrera ASC, YEAR(i.inscripcion) ASC")
-    List<ReporteCarreraDTO> generarReporteCarreras();
+            "GROUP BY c.carrera, FUNCTION('year', i.inscripcion) " +
+            "ORDER BY c.carrera ASC, FUNCTION('year', i.inscripcion) ASC")
+    List<ReporteCarreraParcialDTO> generarReporteCarreras();
+
 }
