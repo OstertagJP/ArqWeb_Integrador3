@@ -2,16 +2,16 @@ package com.arqweb.integrador3.repository;
 
 import com.arqweb.integrador3.dto.ReporteCarreraParcialDTO;
 import com.arqweb.integrador3.entity.Carrera;
-import lombok.NoArgsConstructor;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
-import com.arqweb.integrador3.dto.ReporteCarreraDTO;
 import com.arqweb.integrador3.dto.CarreraDTO;
+
 import java.util.List;
 
 @Repository
 public interface CarreraRepository extends JpaRepository<Carrera, Long> {
+
     @Query("SELECT new com.arqweb.integrador3.dto.CarreraDTO(" +
             "c.idCarrera, c.carrera, COUNT(i), c.duracion) " +
             "FROM Inscripcion i JOIN i.carrera c " +

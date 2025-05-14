@@ -1,7 +1,7 @@
 package com.arqweb.integrador3.entity;
+
 import jakarta.persistence.*;
 import lombok.*;
-
 
 import java.util.List;
 
@@ -18,14 +18,11 @@ public class Carrera {
     private Long idCarrera;
 
     private String carrera;
+
     private Integer duracion;
 
     @OneToMany(mappedBy = "carrera", cascade = CascadeType.ALL)
     private List<Inscripcion> inscripciones;
-
-    public String getNombre() {
-        return carrera;
-    }
 
     public void setNombre(String carrera) {
     }
