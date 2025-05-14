@@ -1,0 +1,180 @@
+{
+  "info": {
+    "name": "ArqWeb_Integrador3 - API Collection",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Alta Estudiante",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"nombre\": \"Juan\",\n  \"apellido\": \"P\\u00e9rez\",\n  \"edad\": 23,\n  \"genero\": \"M\",\n  \"ciudad\": \"Rosario\",\n  \"numeroLibreta\": \"2025001\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/estudiantes",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "estudiantes"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Matricular Estudiante",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"estudianteId\": 1,\n  \"carreraId\": 1,\n  \"anioInscripcion\": 2024\n}"
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/inscripciones",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "inscripciones"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Listar Estudiantes (ordenado por apellido)",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "http://localhost:8080/api/estudiantes?orden=apellido",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "estudiantes"
+          ],
+          "query": [
+            {
+              "key": "orden",
+              "value": "apellido"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Buscar Estudiante por Libreta",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "http://localhost:8080/api/estudiantes/libreta/2025001",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "estudiantes",
+            "libreta",
+            "2025001"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Estudiantes por G\u00e9nero",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "http://localhost:8080/api/estudiantes/genero/F",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "estudiantes",
+            "genero",
+            "F"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Carreras con Estudiantes (ordenadas por cantidad)",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "http://localhost:8080/api/carreras/estudiantes",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "carreras",
+            "estudiantes"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Estudiantes por Carrera y Ciudad",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "http://localhost:8080/api/estudiantes/carrera/1/ciudad/Rosario",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "estudiantes",
+            "carrera",
+            "1",
+            "ciudad",
+            "Rosario"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Reporte Final (inscriptos y egresados por a\u00f1o)",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "http://localhost:8080/api/reportes/carreras",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "reportes",
+            "carreras"
+          ]
+        }
+      }
+    }
+  ]
+}
