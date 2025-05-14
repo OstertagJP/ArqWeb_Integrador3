@@ -25,6 +25,7 @@ public class EstudianteService {
     private EstudianteRepository estudianteRepository;
 
     public Estudiante altaEstudiante(Estudiante estudiante) {
+
         return estudianteRepository.save(estudiante);
     }
 
@@ -40,6 +41,7 @@ public class EstudianteService {
     }
 
     public List<Estudiante> buscarPorGenero(String genero) {
+
         return estudianteRepository.findByGenero(genero);
     }
 

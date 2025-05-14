@@ -26,4 +26,10 @@ public class Carrera {
     public String getNombre() {
         return carrera;
     }
+
+    public void setNombre(String carrera) {
+    }
+
+    public void setCodigo(String idCarrera) {
+    }
 }
