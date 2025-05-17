@@ -13,7 +13,6 @@ import java.util.List;
 public class Estudiante {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long dni;
 
     private String nombre;

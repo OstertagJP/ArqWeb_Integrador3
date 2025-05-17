@@ -7,6 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class ArqWebIntegrador3Application {
 
 	public static void main(String[] args) {
+
 		SpringApplication.run(ArqWebIntegrador3Application.class, args);
 	}
 

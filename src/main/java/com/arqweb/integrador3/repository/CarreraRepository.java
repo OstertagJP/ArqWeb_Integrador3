@@ -9,6 +9,8 @@ import com.arqweb.integrador3.dto.CarreraDTO;
 
 import java.util.List;
 
+import static org.hibernate.grammars.hql.HqlParser.AS;
+
 @Repository
 public interface CarreraRepository extends JpaRepository<Carrera, Long> {
 
@@ -21,7 +23,7 @@ public interface CarreraRepository extends JpaRepository<Carrera, Long> {
 
     @Query("SELECT new com.arqweb.integrador3.dto.ReporteCarreraParcialDTO(" +
             "c.carrera, " +
-            "FUNCTION('year', i.inscripcion), " +
+            "CAST(FUNCTION('year', i.inscripcion) AS integer), " +
             "COUNT(i), " +
             "SUM(CASE WHEN i.graduacion IS NOT NULL THEN 1 ELSE 0 END)) " +
             "FROM Inscripcion i JOIN i.carrera c " +
