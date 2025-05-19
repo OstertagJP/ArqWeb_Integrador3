@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
+import java.util.Optional;
 
 import java.util.List;
 
@@ -39,6 +40,10 @@ public class CarreraService {
 
     public List<ReporteCarreraDTO> generarReporteCarreras(){
         return reporteService.generarReporteCarreras(); // ← Usamos el método ya definido en ReporteService
+    }
+
+    public Optional<Carrera> buscarPorId(Long idCarrera) {
+        return carreraRepository.findById(idCarrera);
     }
 }
 

@@ -31,4 +31,5 @@ public interface CarreraRepository extends JpaRepository<Carrera, Long> {
             "ORDER BY c.carrera ASC, FUNCTION('year', i.inscripcion) ASC")
     List<ReporteCarreraParcialDTO> generarReporteCarreras();
 
+
 }

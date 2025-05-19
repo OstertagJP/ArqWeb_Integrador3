@@ -34,14 +34,11 @@ public class EstudianteService {
         return estudianteRepository.findAll(sort);
     }
 
-
     public Optional<Estudiante> findByLibretaUniversitaria(Long libretaUniversitaria) {
         return estudianteRepository.findByLibretaUniversitaria(libretaUniversitaria);
-
     }
 
     public List<Estudiante> buscarPorGenero(String genero) {
-
         return estudianteRepository.findByGenero(genero);
     }
 
@@ -59,5 +56,10 @@ public class EstudianteService {
         return estudianteRepository.findById((long) id)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Estudiante no encontrado"));
     }
+
+    public Optional<Estudiante> buscarPorId(Long id) {
+        return estudianteRepository.findById(id);
+    }
+
 
 }

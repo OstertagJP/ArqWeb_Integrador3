@@ -97,11 +97,18 @@ public class DBInitializer {
 
                 if (record.isMapped("graduacion")) {
                     String grad = record.get("graduacion");
-                    graduado = grad != null && !grad.trim().isEmpty();
+                    graduado = grad != null && !grad.trim().isEmpty() && !grad.trim().equals("0");
                 }
 
-                inscripcionService.matricularEstudiante(idEstudiante, idCarrera, anioInscripcion, graduado);
+                if (estudianteService.buscarPorId(idEstudiante).isPresent()
+                        && carreraService.buscarPorId(idCarrera).isPresent()) {
+                    inscripcionService.matricularEstudiante(idEstudiante, idCarrera, anioInscripcion, graduado);
+                } else {
+                    System.err.println("⚠ No se encontró estudiante o carrera. Estudiante ID: " + idEstudiante +
+                            ", Carrera ID: " + idCarrera);
+                }
             }
         }
     }
+
 }
