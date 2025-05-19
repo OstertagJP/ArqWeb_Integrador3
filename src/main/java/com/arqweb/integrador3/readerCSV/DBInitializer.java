@@ -52,7 +52,7 @@ public class DBInitializer {
     private void cargarCarreras() throws Exception {
         try (
                 Reader reader = new InputStreamReader(new ClassPathResource("carreras.csv").getInputStream());
-                CSVParser csvParser = CSVFormat.DEFAULT.withFirstRecordAsHeader().parse(reader)
+                CSVParser csvParser = CSVFormat.DEFAULT.builder().setHeader().setSkipHeaderRecord(true).build().parse(reader)
         ) {
             for (CSVRecord record : csvParser) {
                 Carrera carrera = new Carrera();
@@ -68,7 +68,7 @@ public class DBInitializer {
     private void cargarEstudiantes() throws Exception {
         try (
                 Reader reader = new InputStreamReader(new ClassPathResource("estudiantes.csv").getInputStream());
-                CSVParser csvParser = CSVFormat.DEFAULT.withFirstRecordAsHeader().parse(reader)
+                CSVParser csvParser = CSVFormat.DEFAULT.builder().setHeader().setSkipHeaderRecord(true).build().parse(reader)
         ) {
             for (CSVRecord record : csvParser) {
                 Estudiante estudiante = new Estudiante();
@@ -87,11 +87,11 @@ public class DBInitializer {
     private void cargarInscripciones() throws Exception {
         try (
                 Reader reader = new InputStreamReader(new ClassPathResource("estudianteCarrera.csv").getInputStream());
-                CSVParser csvParser = CSVFormat.DEFAULT.withFirstRecordAsHeader().parse(reader)
+                CSVParser csvParser = CSVFormat.DEFAULT.builder().setHeader().setSkipHeaderRecord(true).build().parse(reader)
         ) {
             for (CSVRecord record : csvParser) {
                 Long idEstudiante = Long.parseLong(record.get("id_estudiante"));
-                Long idCarrera = Long.parseLong(record.get("id_carrera"));
+                String idCarrera = record.get("id_carrera");
                 int anioInscripcion = Integer.parseInt(record.get("inscripcion"));
                 boolean graduado = false;
 
@@ -104,8 +104,8 @@ public class DBInitializer {
                         && carreraService.buscarPorId(idCarrera).isPresent()) {
                     inscripcionService.matricularEstudiante(idEstudiante, idCarrera, anioInscripcion, graduado);
                 } else {
-                    System.err.println("⚠ No se encontró estudiante o carrera. Estudiante ID: " + idEstudiante +
-                            ", Carrera ID: " + idCarrera);
+                    System.err.println("⚠ No se encontró estudiante o carrera. Estudiante ID: " +
+                            String.valueOf(idEstudiante) + ", Carrera ID: " + String.valueOf(idCarrera));
                 }
             }
         }

@@ -29,8 +29,8 @@ public class CarreraService {
         return carreraRepository.findAll();
     }
 
-    public Carrera buscarCarreraPorId(int id) {
-        return carreraRepository.findById((long) id)
+    public Carrera buscarCarreraPorId(String id) {
+        return carreraRepository.findById(id)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Carrera no encontrada"));
     }
 
@@ -42,7 +42,7 @@ public class CarreraService {
         return reporteService.generarReporteCarreras(); // ← Usamos el método ya definido en ReporteService
     }
 
-    public Optional<Carrera> buscarPorId(Long idCarrera) {
+    public Optional<Carrera> buscarPorId(String idCarrera) {
         return carreraRepository.findById(idCarrera);
     }
 

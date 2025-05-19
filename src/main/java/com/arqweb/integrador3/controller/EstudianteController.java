@@ -57,7 +57,7 @@ public class EstudianteController {
      * g) Endpoint para recuperar estudiantes por carrera y ciudad
      */
     @GetMapping("/carrera/{idCarrera}/ciudad/{ciudad}")
-    public List<Estudiante> estudiantesPorCarreraYCiudad(@PathVariable int idCarrera, @PathVariable String ciudad) {
+    public List<Estudiante> estudiantesPorCarreraYCiudad(@PathVariable String idCarrera, @PathVariable String ciudad) {
         return estudianteService.buscarPorCarreraYCiudad(idCarrera, ciudad);
     }
 

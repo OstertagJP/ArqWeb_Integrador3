@@ -45,8 +45,8 @@ public class EstudianteService {
     @Autowired
     private CarreraRepository carreraRepository;
 
-    public List<Estudiante> buscarPorCarreraYCiudad(int idCarrera, String ciudad) {
-        Carrera carrera = carreraRepository.findById((long) idCarrera)
+    public List<Estudiante> buscarPorCarreraYCiudad(String idCarrera, String ciudad) {
+        Carrera carrera = carreraRepository.findById(idCarrera)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Carrera no encontrada"));
 
         return estudianteRepository.buscarEstudiantesPorCarreraYCiudad(carrera, ciudad);

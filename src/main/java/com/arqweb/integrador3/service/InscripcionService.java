@@ -26,7 +26,7 @@ public class InscripcionService {
     @Autowired
     private InscripcionRepository inscripcionRepository;
 
-    public Inscripcion matricularEstudiante(Long idEstudiante, Long idCarrera, int anioInscripcion, boolean graduado) {
+    public Inscripcion matricularEstudiante(Long idEstudiante, String idCarrera, int anioInscripcion, boolean graduado) {
         Optional<Estudiante> estudainteOptional = estudianteRepository.findById(idEstudiante);
         Optional<Carrera> carreraOptional = carreraRepository.findById(idCarrera);
         if (estudainteOptional.isEmpty() || carreraOptional.isEmpty()) {

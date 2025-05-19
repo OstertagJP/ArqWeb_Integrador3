@@ -26,7 +26,7 @@ public class InscripcionController {
     // b) Matricular estudiante en carrera
     @PostMapping
     public Inscripcion matricular(@RequestParam Long idEstudiante,
-                                  @RequestParam Long idCarrera,
+                                  @RequestParam String idCarrera,
                                   @RequestParam int anio,
                                   @RequestParam(defaultValue = "false") boolean graduado) {
 
