@@ -45,5 +45,10 @@ public class CarreraService {
     public Optional<Carrera> buscarPorId(Long idCarrera) {
         return carreraRepository.findById(idCarrera);
     }
+
+    public void eliminarTodasLasCarreras() {
+        carreraRepository.deleteAll();
+    }
+
 }
 

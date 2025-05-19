@@ -61,5 +61,9 @@ public class EstudianteService {
         return estudianteRepository.findById(id);
     }
 
+    public void eliminarTodosLosEstudiantes() {
+        estudianteRepository.deleteAll();
+    }
+
 
 }

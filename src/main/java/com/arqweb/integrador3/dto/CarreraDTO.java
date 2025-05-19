@@ -1,10 +1,9 @@
 package com.arqweb.integrador3.dto;
 
-
 import java.io.Serializable;
 
 public class CarreraDTO implements Serializable {
-    private Long id;
+    private String id;
     private String nombre;
     private int cantidadInscriptos;
     private Integer duracion;
@@ -13,26 +12,26 @@ public class CarreraDTO implements Serializable {
     }
 
     // Constructor con parámetros
-    public CarreraDTO(Long id, String nombre, Long cantidadInscriptos, Integer duracion) {
+    public CarreraDTO(String id, String nombre, Long cantidadInscriptos, Integer duracion) {
         this.id = id;
         this.nombre = nombre;
         this.cantidadInscriptos = cantidadInscriptos.intValue(); // conversión
         this.duracion = duracion;
     }
-    // Getters y setters
-    public Integer  getDuracion(){
+
+    public Integer getDuracion() {
         return duracion;
     }
 
-    public void setDuracion(Integer  duracion){
-        this.duracion=duracion;
+    public void setDuracion(Integer duracion) {
+        this.duracion = duracion;
     }
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 

@@ -14,20 +14,14 @@ import java.util.List;
 public class Carrera {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idCarrera;
+    @Column(name = "id_carrera")
+    private String idCarrera;
 
-    private String carrera;
+    @Column(name = "carrera")
+    private String nombre;
 
     private Integer duracion;
 
     @OneToMany(mappedBy = "carrera", cascade = CascadeType.ALL)
     private List<Inscripcion> inscripciones;
-
-    public void setNombre(String carrera) {
-    }
-
-    public void setCodigo(String idCarrera) {
-
-    }
 }

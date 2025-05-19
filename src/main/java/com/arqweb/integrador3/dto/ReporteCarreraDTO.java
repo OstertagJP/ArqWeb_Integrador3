@@ -4,23 +4,23 @@ import java.io.Serializable;
 import java.util.List;
 
 public class ReporteCarreraDTO implements Serializable {
-    private Long id;
+    private String id;  // Cambiado a String para coincidir con el id de la entidad
     private String nombre;
     private List<EstadisticasPorAnioDTO> estadisticasPorAnio;
 
     public ReporteCarreraDTO() { }
 
-    public ReporteCarreraDTO(Long id, String nombre, List<EstadisticasPorAnioDTO> estadisticasPorAnio) {
+    public ReporteCarreraDTO(String id, String nombre, List<EstadisticasPorAnioDTO> estadisticasPorAnio) {
         this.id = id;
         this.nombre = nombre;
         this.estadisticasPorAnio = estadisticasPorAnio;
     }
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 

@@ -4,13 +4,13 @@ import java.io.Serializable;
 
 public class EstudianteCarreraDTO implements Serializable {
     private Long idEstudiante;
-    private Long idCarrera;
+    private String idCarrera;  // Cambiado a String para coincidir con la entidad Carrera
     private int anioInscripcion;
     private boolean graduado;
 
     public EstudianteCarreraDTO() { }
 
-    public EstudianteCarreraDTO(Long idEstudiante, Long idCarrera, int anioInscripcion, boolean graduado) {
+    public EstudianteCarreraDTO(Long idEstudiante, String idCarrera, int anioInscripcion, boolean graduado) {
         this.idEstudiante = idEstudiante;
         this.idCarrera = idCarrera;
         this.anioInscripcion = anioInscripcion;
@@ -25,11 +25,11 @@ public class EstudianteCarreraDTO implements Serializable {
         this.idEstudiante = idEstudiante;
     }
 
-    public Long getIdCarrera() {
+    public String getIdCarrera() {
         return idCarrera;
     }
 
-    public void setIdCarrera(Long idCarrera) {
+    public void setIdCarrera(String idCarrera) {
         this.idCarrera = idCarrera;
     }
 
@@ -53,7 +53,7 @@ public class EstudianteCarreraDTO implements Serializable {
     public String toString() {
         return "EstudianteCarreraDTO{" +
                 "idEstudiante=" + idEstudiante +
-                ", idCarrera=" + idCarrera +
+                ", idCarrera='" + idCarrera + '\'' +
                 ", anioInscripcion=" + anioInscripcion +
                 ", graduado=" + graduado +
                 '}';

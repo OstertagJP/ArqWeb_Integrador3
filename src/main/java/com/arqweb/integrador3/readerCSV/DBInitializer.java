@@ -16,8 +16,6 @@ import org.springframework.stereotype.Component;
 import java.io.InputStreamReader;
 import java.io.Reader;
 
-
-
 @Component
 public class DBInitializer {
 
@@ -37,6 +35,12 @@ public class DBInitializer {
     @PostConstruct
     public void cargarDatos() {
         try {
+            // Limpieza previa de datos
+            inscripcionService.eliminarTodasLasInscripciones();
+            estudianteService.eliminarTodosLosEstudiantes();
+            carreraService.eliminarTodasLasCarreras();
+
+            // Carga de CSV
             cargarCarreras();
             cargarEstudiantes();
             cargarInscripciones();
@@ -52,13 +56,9 @@ public class DBInitializer {
         ) {
             for (CSVRecord record : csvParser) {
                 Carrera carrera = new Carrera();
+                carrera.setIdCarrera(record.get("id_carrera"));
                 carrera.setNombre(record.get("carrera"));
                 carrera.setDuracion(Integer.parseInt(record.get("duracion")));
-
-                // Alternativa: si tenés un campo código lógico
-                if (record.isMapped("id_carrera")) {
-                    carrera.setCodigo(record.get("id_carrera")); // nuevo campo lógico
-                }
 
                 carreraService.crearCarrera(carrera);
             }
@@ -110,5 +110,4 @@ public class DBInitializer {
             }
         }
     }
-
 }

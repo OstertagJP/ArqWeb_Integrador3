@@ -55,4 +55,9 @@ public class InscripcionService {
     public List<Inscripcion> listarTodasLasInscripciones(){
         return inscripcionRepository.findAll();
     }
+
+    public void eliminarTodasLasInscripciones() {
+        inscripcionRepository.deleteAll();
+    }
+
 }
