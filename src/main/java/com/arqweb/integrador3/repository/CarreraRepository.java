@@ -21,12 +21,11 @@ public interface CarreraRepository extends JpaRepository<Carrera, String> {
 
     @Query("SELECT new com.arqweb.integrador3.dto.ReporteCarreraParcialDTO(" +
             "c.nombre, " +
-            "CAST(FUNCTION('year', i.inscripcion) AS integer), " +
+            "YEAR(i.inscripcion), " +
             "COUNT(i), " +
             "SUM(CASE WHEN i.graduacion IS NOT NULL THEN 1 ELSE 0 END)) " +
             "FROM Inscripcion i JOIN i.carrera c " +
-            "GROUP BY c.nombre, FUNCTION('year', i.inscripcion) " +
-            "ORDER BY c.nombre ASC, FUNCTION('year', i.inscripcion) ASC")
+            "GROUP BY c.nombre, YEAR(i.inscripcion) " +
+            "ORDER BY c.nombre ASC, YEAR(i.inscripcion) ASC")
     List<ReporteCarreraParcialDTO> generarReporteCarreras();
-
 }
