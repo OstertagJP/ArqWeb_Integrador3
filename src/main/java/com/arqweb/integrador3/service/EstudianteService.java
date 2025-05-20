@@ -30,7 +30,7 @@ public class EstudianteService {
     }
 
     public List<Estudiante> obtenerTodosEstudiantes(String orden) {
-        Sort sort = orden.equalsIgnoreCase("desc") ? Sort.by("nombre").descending() : Sort.by("nombre").ascending();
+        Sort sort = orden.equalsIgnoreCase("desc") ? Sort.by("apellido").descending() : Sort.by("apellido").ascending();
         return estudianteRepository.findAll(sort);
     }
 

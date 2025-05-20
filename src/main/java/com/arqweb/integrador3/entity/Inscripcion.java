@@ -1,5 +1,6 @@
 package com.arqweb.integrador3.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 import java.time.LocalDate;
@@ -18,10 +19,12 @@ public class Inscripcion {
 
     @ManyToOne
     @JoinColumn(name = "id_estudiante")
+    @JsonIgnore     //Esto es para que muestre uno dentro del otro, como algo recursivo infinito
     private Estudiante estudiante;
 
     @ManyToOne
     @JoinColumn(name = "id_carrera")
+    @JsonIgnore     //Esto es para que muestre uno dentro del otro, como algo recursivo infinito
     private Carrera carrera;
 
     private LocalDate inscripcion;
