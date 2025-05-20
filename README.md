@@ -4,10 +4,10 @@
 Este proyecto implementa funcionalidades que interactúan con una base de datos relacional utilizando Spring Boot, JPA y Hibernate. Permite la gestión de entidades como Estudiantes, Carreras y su relación, con carga desde archivos CSV, persistencia, y consultas específicas.
 
 ## 👥 Integrantes
-- Pérez, Juan
-- González, María
-- López, Ana
-- Torres, Martín
+- Gadea Katia
+- Ostertag Juan Pablo
+- Silva German
+- Ibauza Matias
 
 ## 📈 Funcionalidades principales
 - Carga de datos desde archivos CSV a la base de datos.
@@ -48,23 +48,23 @@ CSVs ubicados en: `src/main/resources/csv/`
 
 ## 🔌 Endpoints REST
 
-| Método | Endpoint | Descripción |
-|--------|----------|-------------|
-| GET | `/api/estudiantes` | Retorna todos los estudiantes. |
-| GET | `/api/estudiantes/lu/{lu}` | Busca un estudiante por número de LU. |
-| GET | `/api/estudiantes/genero/{genero}` | Devuelve estudiantes de un determinado género. |
-| GET | `/api/estudiantes/orderBy/apellido` | Devuelve todos los estudiantes ordenados por apellido. |
-| POST | `/api/estudiantes` | Dar de alta un nuevo estudiante. |
-| POST | `/api/carreras` | Dar de alta una nueva carrera. |
-| GET | `/api/carreras` | Obtener todas las carreras con cantidad de estudiantes inscriptos. |
-| POST | `/api/inscripciones` | Matricular estudiante a una carrera. |
-| GET | `/api/carreras/estudiantes/reporte` | Generar reporte con cantidad de inscriptos y graduados por carrera y año. |
+Puedes importar la colección `integrador3.postman_collection.json` para probar los endpoints fácilmente desde Postman.
+
+Algunos ejemplos:
+
+🅳 Obtener estudiantes filtrados por género
+GET /estudiantes/genero/{genero}
+Ejemplo: /estudiantes/genero/M (ver como estan cargados)
+🅷 Reporte de carreras con inscriptos y graduados por año
+GET /reportes/carreras
+
+
 
 ## ⚙️ Configuración y Ejecución
 
 ### 1. Clonar el repositorio
 ```bash
-git clone https://github.com/tuusuario/integrador3.git
+git clone https://github.com/OstertagJP/ArqWeb_Integrador3
 ```
 
 ### 2. Crear la base de datos MySQL
@@ -76,8 +76,8 @@ CREATE DATABASE integrador3 CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 Ubicado en `src/main/resources/application.properties`, incluir:
 ```properties
 spring.datasource.url=jdbc:mysql://localhost:3306/integrador3
-spring.datasource.username=tu_usuario
-spring.datasource.password=tu_contraseña
+spring.datasource.username=root
+spring.datasource.password=
 spring.jpa.hibernate.ddl-auto=update
 ```
 
